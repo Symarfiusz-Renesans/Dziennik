@@ -1,0 +1,91 @@
+@mixin tloLoga($gornaCzesc)
+	width: 100%
+	background: linear-gradient(#2CDE50, #22AB3E)
+	border-radius: $gornaCzesc $gornaCzesc 50% 50%
+
+
+@font-face
+	font-family: playFair
+	src: url("../czcionka/italiPlayfair.ttf")
+
+body
+	font-family: playFair
+	background-color: lightblue
+	margin: 0
+	background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../zdjecia/klasa.png")
+	background-size: cover
+	background-repeat: no-repeat
+	background-attachment: fixed
+
+	main
+		height: 100vh
+
+		h1
+			margin: 0
+			text-align: center
+			color: white
+			text-transform: uppercase
+
+		header
+			height: 15vh
+			@include tloLoga(0)
+
+			h1
+				font-size: 7.5vh
+				padding-bottom: 10px
+
+		div.flexBox
+			height: 85vh
+
+.flexBox
+	display: flex	
+	align-items: center	
+	justify-content: center
+
+.flexBoxForm
+	display: flex
+	flex-direction: column	
+
+#loguj
+	height: 50vh
+	width: 30%
+	background: rgb(255,255,255)
+	background: radial-gradient(circle, rgba(255,255,255,1) 35%, rgba(244,236,230,1) 100%)
+	border-radius: 25px 25px 25px 25px
+
+	header
+		height: 15%
+		@include tloLoga(25px)
+		top: 0
+
+		h1
+			font-size: 3.75vh
+			padding-bottom: 5px
+
+	form
+		height: 80%
+
+		label
+			font-weight: bold
+
+		button
+			background-color: #FF9B30
+			border: 2px #EE8416 solid
+			border-radius: 5px
+			padding: 10px	
+			color: white
+			font-weight: bold
+			font-family: playFair
+
+		input
+			border: 2px #481D91 solid
+			border-radius: 2px
+			background-color: #7D43DE
+			color: white
+			font-family: playFair
+			text-align: center
+			font-weight: bold
+			width: 70%
+
+
+

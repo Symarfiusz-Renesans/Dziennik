@@ -5,9 +5,7 @@
 	$query = 'EXEC usunStudenta @idS = '.$_POST['id'];
 
 	sqlsrv_query($polaczenie, $query);
-	sqlsrv_query($polaczenie, $query);
-	sqlsrv_query($polaczenie, $query);
 
-	header("Location:dziennik.php");
+	header("Location:..dziennik.php");
 
 ?>

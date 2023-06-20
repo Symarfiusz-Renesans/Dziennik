@@ -20,7 +20,7 @@
 
 	while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
 			if($_POST['haslo'] == $row['haslo']){
-				header("Location:dziennik.php");
+				header("Location:..dziennik.php");
 			} else {
 				setcookie("error", true, time() + 3600, "/");
 				header("Location:..index.php");
