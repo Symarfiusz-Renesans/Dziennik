@@ -2,29 +2,23 @@
 
 	include 'check.php';
 
-	$wybierzUzytkownika;
-
-	switch ($_COOKIE['typUzytkownika']) {
-		case 1:
-			$wybierzUzytkownika = 'SELECT haslo FROM dbo.wyswietlDanegoStudenta('.$_COOKIE['uzytkownik'].')';
-			break;
-		case 2:
-			$wybierzUzytkownika = 'SELECT haslo FROM dbo.wyswietlDanegoNauczyciela('.$_COOKIE['uzytkownik'].')';
-			break;
-		case 3:
-			$wybierzUzytkownika = 'SELECT haslo FROM dbo.wyswietlDanegoDyrektora('.$_COOKIE['uzytkownik'].')';
-			break;
-	}
+	$wybierzUzytkownika = "SELECT * FROM wyswietlHasloUzytkownika('".$_POST["login"]."')";
 
 	$result = sqlsrv_query($polaczenie, $wybierzUzytkownika);
+	echo var_dump($result);
 
-	while( $row = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
-			if($_POST['haslo'] == $row['haslo']){
-				header("Location:..dziennik.php");
-			} else {
-				setcookie("error", true, time() + 3600, "/");
-				header("Location:..index.php");
-			}
+	if ( is_numeric( sqlsrv_num_rows( $result ))) {
+		// code...
 	}
+		while( $wiersz = sqlsrv_fetch_array( $result, SQLSRV_FETCH_ASSOC) ) {
+			if($_POST['haslo'] == $wiersz['haslo']){
+				setcookie("typUzytkownika", $wiersz["idTypuUzytkownika"], time() + 3600, "/");
+   				setcookie("uzytkownik", $wiersz["idUzytkownika"], time() + 3600, "/");
+				header("Location: ../index.php");
+			} else {
+				setcookie("error", "Podano nieprawidłowe hasło!", time() + 60, "/");
+				header("Location: ../index.php");
+			}
+		}
 
 ?>

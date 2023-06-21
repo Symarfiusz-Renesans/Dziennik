@@ -1,8 +1,9 @@
 <?php
 
 if(!isset($_COOKIE['typUzytkownika'])){
-	setcookie('wylogowany', true, time()+3600, "/");
-	header("Location:..index.php");
+	setcookie("typUzytkownika", null, -1, "/");
+ 	setcookie("uzytkownik", null, -1, "/");
+	header("Location: ../Podstrony/logowanie.php");
 }
 
 ?>
