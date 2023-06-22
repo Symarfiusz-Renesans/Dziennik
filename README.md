@@ -9,7 +9,7 @@ Następnie w folderze *czystyPHP* znajduje się plik o nazwie: *check.php* któr
 ## Co działa?
 Na chwilę obecną projekt jest niekompletny i nie działa w całości.
 Działa jedynie częściowo *index.php*, które sprawdza czy jest użytkownik jest zalogowany. Jeśli nie odsyła go do strony *logowanie.php*, które działa w całości.
-Sama baza danych nie ma na chwilę obecną żadnych większych błędów.
+Sama baza danych nie ma na chwilę obecną żadnych większych błędów, ale prawie w całości jest pusta, a niestety coraz trudniej o generatora danych w internecie (na serio, gdzie one zniknęły?).
 
 ## Ciąg dalszy nastąpi!
 Proszę o cierpliwość!
