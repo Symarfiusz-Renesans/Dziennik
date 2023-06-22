@@ -1,41 +1,8 @@
-@mixin tloLoga($gornaCzesc)
-	width: 100%
-	background: linear-gradient(#2CDE50, #22AB3E)
-	border-radius: $gornaCzesc $gornaCzesc 50% 50%
+@use 'stylDoNaglowka'
 
-
-@font-face
-	font-family: playFair
-	src: url("../czcionka/italiPlayfair.ttf")
-
-body
-	font-family: playFair
-	background-color: lightblue
-	margin: 0
-	background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url("../zdjecia/klasa.png")
-	background-size: cover
-	background-repeat: no-repeat
-	background-attachment: fixed
-
-	main
-		height: 100vh
-
-		h1
-			margin: 0
-			text-align: center
-			color: white
-			text-transform: uppercase
-
-		header
-			height: 15vh
-			@include tloLoga(0)
-
-			h1
-				font-size: 7.5vh
-				padding-bottom: 10px
-
-		div.flexBox
-			height: 85vh
+main
+	div.flexBox
+		height: 85vh
 
 .flexBox
 	display: flex	
@@ -55,7 +22,7 @@ body
 
 	header
 		height: 15%
-		@include tloLoga(25px)
+		@include stylDoNaglowka.tloLoga(25px)
 		top: 0
 
 		h1
