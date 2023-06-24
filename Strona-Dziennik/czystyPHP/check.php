@@ -1,6 +1,6 @@
 <?php
 
-     $serverName = "DESKTOP-AV0SG4D";
+     $serverName = "TwojKomputer";
      
      $connectionInfo = array( "Database"=>"praktyki", "UID" =>"sa", "PWD" => "2006");
      $polaczenie = sqlsrv_connect( $serverName, $connectionInfo);
