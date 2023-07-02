@@ -20,39 +20,27 @@
 		include '../czystyPHP/czyZalogowany.php';
 
 		$funWDP = "SELECT * FROM pokazDanaPraktyke(".$_COOKIE['id'].")";
-		$rezultat = sqlsrv_query($polaczenie, $funWDP, array(), array( "Scrollable" => 'static' ));
+		$wyliczRezultat = sqlsrv_query($polaczenie, $funWDP, array(), array( "Scrollable" => SQLSRV_CURSOR_KEYSET ));
+		$wyliczRezultat = sqlsrv_num_rows($wyliczRezultat);
+		$rezultat =sqlsrv_query($polaczenie, $funWDP);
+		
+		if ($wyliczRezultat != false) {
 
-		echo $rezultat;
-
-		echo sqlsrv_num_rows( $rezultat );
-
-		echo $funWDP;
-		if ( is_numeric( sqlsrv_num_rows( $rezultat ))) {
+			echo '<table><tr><th>Rok</th><th>Klasa</th><th>Opiekun</th><th>Typ praktyk</th></tr>';
 			while($row = sqlsrv_fetch_array($rezultat, SQLSRV_FETCH_ASSOC)){
 				$idOp;
-				$idFi;
-				$idSp;
 
-				$funWDO = "SELECT * FROM opiekuniIIchWyksztalcenie WHERE idOpiekuna = ".$row['id_zatrudn_naucz'];
+				$funWDO = "SELECT * FROM opiekuniIIchWyksztalcenie WHERE Idzatrudnienia = ".$row['Id_zatrudn_naucz'];
 				$subRezultat = sqlsrv_query($polaczenie ,$funWDO);
 				while($subRow = sqlsrv_fetch_array($subRezultat, SQLSRV_FETCH_ASSOC)){
 					$idOp = $subRow['skrot']." ".$subRow['imie']." ".$subRow['nazwisko'];
 				}
 
-				$funWDF = "SELECT * FROM firmyIIchSpecjalizacje WHERE idFirmy = ".$row['idFirmy'].";";
-				$subRezultat = sqlsrv_query($polaczenie, $funWDF);
-				while($subRow = sqlsrv_fetch_array($subRezultat, SQLSRV_FETCH_ASSOC)){
-					$idFi = $subRow['nazwa'];
-					$idSp = $subRow['nazwaSpecjalizacji'];
-				}
-
-				echo '<h2>Typ praktyk: '.$row['nazwaTypuPraktyk'].'</h2>';
-				echo '<h2>Firma: '.$idFi.'</h2>';
-				echo '<h2>Specjalizacja: '.$idSp.'</h2>';
-				echo '<h2>Opiekun: '.$idOp.'</h2>';
-			}			
+				echo '<tr><td>Rok: '.$row['rokPraktyk'].'</td><td>Klasa: '.$row['klasa'].'</td><td>Opiekun: '.$idOp.'</td><td>Typ praktyk: '.$row['nazwaTypuPraktyk'].'</td></tr>';	
+			}
+			echo "</table>";
 		} else {
-			echo "<h2>Wygląda na to, że jeszcze nie miałeś/łaś praktyk!</h2>";
+			echo "<h2 style='color: black'>Wygląda na to, że jeszcze nie miałeś/łaś praktyk!</h2>";
 		}
 
 	?>
