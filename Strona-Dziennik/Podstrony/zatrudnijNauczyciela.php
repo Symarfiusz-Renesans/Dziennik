@@ -8,8 +8,8 @@
 <body>
 	
 	<?php
-		include 'check.php';
-		include 'czyZalogowany.php';
+		include '../czystyPHP/check.php';
+		include '../czystyPHP/czyZalogowany.php';
 
 		$wybierzUzytkownika = 'SELECT * FROM tytuly';
 		$result = sqlsrv_query($polaczenie ,$wybierzUzytkownika);

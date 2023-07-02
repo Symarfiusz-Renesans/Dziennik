@@ -4,13 +4,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Nauczyciele</title>
+	<link rel="stylesheet" href="../style/stylDoTabel.css">
 </head>
 <body>
+
+<main >
+	<div id="okno">
+		<header class="flexBox">
+			<h1>Twoi Nauczyciele!</h1>
+		</header>
+		<div>
 	
 	<?php
 
-		include 'czyZalogowany.php';
-		include 'check.php';
+		include '../czystyPHP/czyZalogowany.php';
+		include '../czystyPHP/check.php';
 
 		$funWDS = 'SELECT * FROM wyswietlWszystkichNauczycieli() WHERE idSzkoly ='.$_GET['szkola'];
 
@@ -25,8 +33,9 @@
 		echo '</table>';
 
 	?>
-
-	<a href="dziennik.php">Anuluj</a>
+		</div>
+	</div>
+</main>	
 
 </body>
 </html>

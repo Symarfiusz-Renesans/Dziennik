@@ -8,8 +8,8 @@
 <body>
 	
 	<?php
-		include 'check.php';
-		include 'czyZalogowany.php';
+		include '../czystyPHP/check.php';
+		include '../czystyPHP/czyZalogowany.php';
 
 		$funWDS = 'SELECT * FROM wyswietlWszystkichNauczycieli() WHERE idSzkoly ='.$_GET['szkola'];
 
