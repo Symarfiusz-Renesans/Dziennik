@@ -2,12 +2,14 @@
 
 	include	'check.php';
 
-	$query = 'EXEC zmienDyrektora
-	@idD ='.$_COOKIE['uzytkownik'].',
-	@imie = "'.$_POST['imie'].'",
-	@nazwisko = "'.$_POST['nazw'].'",
-	@wyksztalcenie = '.$_POST['wyksztalcenie'].',
-	@haslo = "'.$_POST['haslo'].'"';
+	$query = "EXEC zmienDyrektora
+	@idD =".$_COOKIE['id'].",
+	@imie = '".$_POST['imie']."',
+	@nazwisko = '".$_POST['nazw']."',
+	@wyksztalcenie = ".$_POST['wyksztalcenie'].",
+	@haslo = '".$_POST['haslo']."'";
+
+	echo $query;
 
 
 
@@ -19,8 +21,10 @@
         echo $_COOKIE['error'];
 
         
+	} else {
+		setcookie("error", "Zamiana Dyrektorów nastąpiła pomyślnie! Prosimy o odświeżenie strony!", time()+60, "/");
 	}
 
-	#header("Location:../Podstrony/zmienDyrektora.php");
+	header("Location:../Podstrony/zmienDyrektora.php");
 
 ?>
