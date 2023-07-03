@@ -34,8 +34,19 @@ body {
   background: transparent;
 }
 
+.flexBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexBoxForm {
+  display: flex;
+  flex-direction: column;
+}
+
 main {
-  height: 100vh;
+  max-height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -43,11 +54,12 @@ main {
   flex-direction: column;
 }
 main #okno {
-  height: auto;
-  width: 50%;
+  min-height: 70%;
+  min-width: 50%;
   background: rgb(255, 255, 255);
   background: radial-gradient(circle, rgb(255, 255, 255) 35%, rgb(244, 236, 230) 100%);
   border-radius: 25px 25px 25px 25px;
+  margin-top: 10px;
 }
 main #okno header {
   height: 15%;
@@ -65,37 +77,38 @@ main #okno header h1 {
 }
 main #okno div {
   width: 100%;
+  max-height: 85%;
   display: flex;
-  align-items: center;
   justify-content: center;
   background: rgb(255, 255, 255);
   background: radial-gradient(circle, rgb(255, 255, 255) 35%, rgb(244, 236, 230) 100%);
   border-radius: 25px 25px 25px 25px;
-  padding-bottom: 10px;
+  overflow: auto;
 }
-main #okno div table {
-  border-collapse: collapse;
-  border-radius: 10px;
-  color: white;
-  overflow: hidden;
+main #okno form {
+  height: 80%;
 }
-main #okno div table tr {
-  min-width: 30px;
-  background-color: #B79CDF;
-  border: 1px solid #F4ECE6;
+main #okno form label {
+  font-weight: bold;
 }
-main #okno div table tr th {
-  background-color: #7D43DE;
+main #okno form button {
+  background-color: #FF9B30;
+  border: 2px #EE8416 solid;
+  border-radius: 5px;
   padding: 10px;
-  min-width: 30px;
-  border: 1px solid #F4ECE6;
+  color: white;
+  font-weight: bold;
+  font-family: playFair;
 }
-main #okno div table tr:nth-child(even) {
-  background-color: #A67ADF;
-}
-main #okno div table tr td {
-  padding: 2px 10px;
-  border: 1px solid #F4ECE6;
+main #okno form input {
+  border: 2px #481D91 solid;
+  border-radius: 2px;
+  background-color: #7D43DE;
+  color: white;
+  font-family: playFair;
+  text-align: center;
+  font-weight: bold;
+  width: 70%;
 }
 
-/*# sourceMappingURL=stylDoTabel.css.map */
+/*# sourceMappingURL=stylDoFormularzy.css.map */
