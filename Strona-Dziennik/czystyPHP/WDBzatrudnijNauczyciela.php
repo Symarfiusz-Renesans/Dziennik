@@ -2,25 +2,26 @@
 
 	include	'check.php';
 
-	$idS;
-	$n = "SELECT * FROM szkolyIIchDyrektorzy WHERE idDyrektora = ".$_COOKIE['uzytkownik'];
-
-	$resultN = sqlsrv_query($polaczenie, $n);
-
-	while( $row = sqlsrv_fetch_array( $resultN, SQLSRV_FETCH_ASSOC) ) {
-		$idS = $row['idSzkoly'];
-	}
-
 	$query = 'EXEC dodajNauczyciela
-	@idSzkoly = '.$idS.',
+	@idSzkoly = '.$_GET['szkola'].',
 	@imie = "'.$_POST['imie'].'",
 	@nazwisko = "'.$_POST['nazw'].'",
-	@wyksztalcenie = '.$_POST['wyksztalcenie'].',
+	@wyksztalcenie = '.$_POST['wyksztalcenie'];
 
-	@haslo = "'.$_POST['haslo'].'"';
+	echo $query;
 
-	sqlsrv_query($polaczenie, $query);
+	if (sqlsrv_query($polaczenie, $query) === false) {
+		$error = sqlsrv_errors();
+		foreach( $error as $e ) {
+			setcookie("error", $e["message"], time()+60, "/");
+        }
+        echo $_COOKIE['error'];
 
-	header("Location:..dziennik.php");
+        
+	} else {
+		setcookie("error", "Pomyślnie zatrudniono nauczyciela!", time()+60, "/");
+	}
+
+	header("Location:../Podstrony/zatrudnijNauczyciela.php?szkola=".$_GET['szkola']);
 
 ?>
