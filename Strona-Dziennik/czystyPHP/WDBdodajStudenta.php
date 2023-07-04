@@ -2,32 +2,28 @@
 
 	include	'check.php';
 
-	$idS;
-	$n = "SELECT * FROM szkolyIIchDyrektorzy WHERE idDyrektora = ".$_COOKIE['uzytkownik'];
-
-	$resultN = sqlsrv_query($polaczenie, $n);
-
-	while( $row = sqlsrv_fetch_array( $resultN, SQLSRV_FETCH_ASSOC) ) {
-		$idS = $row['idSzkoly'];
-	}
-
 	$query = 'EXEC dodajStudenta
-	@idSzkoly ='.$idS.',
+	@idSzkoly ='.$_GET['szkola'].',
 	@imie ="'.$_POST['imie'].'",
-	@nazwisko ="'.$_POST['nazw'].'",
-	@stopienSt ='.$_POST['stop'].',
-	@rokSt = 1,
-	@idTypu = '.$_POST['typ'].',
-	@idNaucz = '.$_POST['wych'].',
-	@idFirmy ='.$_POST['firm'].',
-	@idOpiekuna = '.$_POST['opie'].' ,
-	@rok = '.date("Y").',
-	@haslo = "'.$_POST['haslo'].'"';
+	@nazwisko ="'.$_POST['nazw'].'"';
 
 	sqlsrv_query($polaczenie, $query);
 
-	header("Location:..dziennik.php");
+	if (sqlsrv_query($polaczenie, $query) === false) {
+		$error = sqlsrv_errors();
+		foreach( $error as $e ) {
+			setcookie("error", $e["message"], time()+60, "/");
+        }
+        echo $_COOKIE['error'];
 
+        
+	} else {
+		setcookie("error", "Pomyślnie dodano Studenta!", time()+60, "/");
+	}
+
+	echo $query;
+
+	#header("Location:../Podstrony/dodajStudenta.php?szkola=".$_GET['szkola']);
 		
 
 ?>
