@@ -2,10 +2,21 @@
 
 	include	'check.php';
 
-	$query = 'EXEC usunStudenta @idS = '.$_POST['id'];
+	$query = 'EXEC usunStudenta @i = '.$_POST['id'];
 
-	sqlsrv_query($polaczenie, $query);
+	if (sqlsrv_query($polaczenie, $query) === false) {
+		$error = sqlsrv_errors();
+		foreach( $error as $e ) {
+			setcookie("error", $e["message"], time()+60, "/");
+        }
+        echo $_COOKIE['error'];
 
-	header("Location:..dziennik.php");
+        
+	} else {
+		setcookie("error", "Pomyślnie usunięto studenta.", time()+60, "/");
+	}
+
+
+	header("Location:../Podstrony/usunStudenta.php?szkola=".$_GET['szkola']);
 
 ?>

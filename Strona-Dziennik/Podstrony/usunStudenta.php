@@ -4,8 +4,21 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=	, initial-scale=1.0">
 	<title>Wstaw ocene</title>
+	<link rel="stylesheet" href="../style/stylDoFormularzy.css">
 </head>
 <body>
+
+<main >
+	<div id="okno">
+		<header class="flexBox">
+			<h1>Wypełnij Formularz!</h1>
+		</header>
+
+		<?php
+			if (isset($_COOKIE['error'])) {
+				echo $_COOKIE['error'];
+			}
+		?>
 	
 	<?php
 		include '../czystyPHP/check.php';
@@ -14,7 +27,7 @@
 		$funWDS = 'SELECT * FROM szkolyIIchStudenci WHERE idSzkoly ='.$_GET['szkola'];
 
 		$rezultat = sqlsrv_query($polaczenie, $funWDS);
-		echo '<h3>Wybierz ocenę</h3><form action="WDBusunStudenta.php" method="POST"><select name="id">';
+		echo '<form action="../czystyPHP/WDBusunStudenta.php?szkola='.$_GET['szkola'].'" method="POST" class="flexBoxForm flexBox"><label>Wybierz Studenta</label><select name="id">';
 		while( $row = sqlsrv_fetch_array( $rezultat, SQLSRV_FETCH_ASSOC) ) {
 			echo '<option value="'.$row['Indeks'].'">';
 			
@@ -22,8 +35,7 @@
 		}
 	?>
 
-	</select><br><br><button>Potwierdź</button></form>
-	<a href="dziennik.php">Anuluj</a>
+	</select><br><button>Potwierdź</button></form>
 
 </body>
 </html>
